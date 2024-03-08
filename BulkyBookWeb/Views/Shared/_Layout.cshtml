@@ -3,69 +3,87 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BulkyBookWeb</title>
+    @* <title>@ViewData["Title"] - BulkyBookWeb</title> *@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/bootswatchTheme.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BulkyBookWeb.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+
+        <nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="#">Mind Benders E-commerce</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarColor02">
+                <div class="collapse navbar-collapse" id="navbarColor03">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                @*change*@
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
 
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a class="/image" asp-area="" asp-controller="Image" asp-action="Index">Image</a>
-
+                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+                            @*change*@
                         </li>
                         
+                        <li class="nav-item">
+
+                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Privace</a>
+                            @*change*@
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Customer" asp-controller="Image" asp-action="Index">Image</a>
+                            @* problem *@
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Content Management
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+
+                                </li>
+                               
+                                <li><hr class="dropdown-divider"></li>
+                                @* <li><a class="dropdown-item" href="#">Something else here</a></li> *@
+                            </ul>
+                        </li>
+
+                        @* <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                        </li> *@
                         @* <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
                         </li> *@
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="search" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                     <form asp-action="Index" class="d-flex">
+                    <input name="term" class="form-control me-sm-2" type="search" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                     </form>
-                </div>
-            </div>
-        </nav>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BulkyBookWeb</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                        </li>
-                        <li class="nav-item">
-                        </li>
-                    </ul>
+                    @* <form asp-action="CategoryController">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <input name="term" class="form-control" placeholder="Search by name" />
+
+                            </div>
+                            <div class="col-6-md-4">
+                                <button type="submit" class="btn btn-info">Search</button>
+
+                            </div>
+
+                        </div>
+                    </form> *@
                 </div>
             </div>
         </nav>
@@ -76,9 +94,41 @@
         </main>
     </div>
 
+    @* <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @if (Model.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/Category/Categories?term=@Model.Term&@(Model.CurrentPage-1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            
+            @for (int i = 0; i < Model.TotalPages; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <li class="page-item"><a class="page-link active" href="/Category/Categories?term=@Model.Term&@i">@i</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" href="/Category/Categories?term=@Model.Term&@Model.CurrentPage">@i</a></li>
+                }
+                
+            }
+          
+            <li class="page-item">
+                <a class="page-link" href="/Category/Categories?term=@Model.Term&@(Model.CurrentPage+1)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav> *@
+
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - BulkyBookWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="text-center">
+            &copy; 2024 - Mind Benders E-commerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

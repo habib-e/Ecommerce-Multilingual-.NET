@@ -1,0 +1,27 @@
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace Bulky.Models
+{
+    public class Category
+    {
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [DisplayName("Display Order")]
+        [Range(1,100,ErrorMessage ="Display Order must be between 1 and 100 only")]
+
+        public string DisplayOrder { get; set; }
+
+        public DateTime CreatedDateTime { get; set; } = DateTime.Now;
+
+        //public int PageSize { get; set; }
+
+        //public int CurrentPage { get; set; }
+
+        //public int TotalPages { get; set; } 
+
+        //public string Term { get; set; }    
+    }
+}

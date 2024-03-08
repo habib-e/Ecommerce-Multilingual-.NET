@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bulky.DataAccess.Data;
+using Bulky.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BulkyBookWeb.Data;
-using BulkyBookWeb.Models;
+
 
 namespace BulkyBookWeb.Controllers
 {
@@ -15,7 +16,7 @@ namespace BulkyBookWeb.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public ImageController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment )
+        public ImageController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             this._hostEnvironment = hostEnvironment;
@@ -61,26 +62,26 @@ namespace BulkyBookWeb.Controllers
             //if (ModelState.IsValid)
             //{
 
-                //Save image to wwwroot/Image
-                string wwwRootPath = _hostEnvironment.WebRootPath;
+            //Save image to wwwroot/Image
+            string wwwRootPath = _hostEnvironment.WebRootPath;
 
-                string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
+            string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
 
-                string extension = Path.GetExtension(imageModel.ImageFile.FileName);
+            string extension = Path.GetExtension(imageModel.ImageFile.FileName);
 
-                imageModel.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            imageModel.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
 
-                string path = Path.Combine(wwwRootPath + "/Image/", fileName);
+            string path = Path.Combine(wwwRootPath + "/Image/", fileName);
 
-                using (var fileStream = new FileStream(path, FileMode.Create))
-                {
-                    await imageModel.ImageFile.CopyToAsync(fileStream);
-                }
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                await imageModel.ImageFile.CopyToAsync(fileStream);
+            }
 
-                //Insert record
-                _context.Add(imageModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+            //Insert record
+            _context.Add(imageModel);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
             //}
             //return View(imageModel);
         }
