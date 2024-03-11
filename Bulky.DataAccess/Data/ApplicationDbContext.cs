@@ -1,10 +1,12 @@
 ﻿
 using Bulky.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bulky.DataAccess.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> Options) : base(Options)
         {
@@ -17,6 +19,7 @@ namespace Bulky.DataAccess.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Web Development", DisplayOrder = "9" },
@@ -37,8 +40,9 @@ namespace Bulky.DataAccess.Data
                     Price = 90,
                     Price50 = 85,
                     Price100 = 80,
-                    CategoryId = 1
-                   
+                    CategoryId = 1,
+                    ImageUrl = ""
+
                 },
                 new Product
                 {
@@ -51,7 +55,8 @@ namespace Bulky.DataAccess.Data
                     Price = 30,
                     Price50 = 25,
                     Price100 = 20,
-                    CategoryId = 2
+                    CategoryId = 2,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -64,7 +69,8 @@ namespace Bulky.DataAccess.Data
                     Price = 50,
                     Price50 = 40,
                     Price100 = 35,
-                    CategoryId = 3
+                    CategoryId = 3,
+                    ImageUrl = ""
                 }
                 //new Product
                 //{
@@ -105,7 +111,7 @@ namespace Bulky.DataAccess.Data
                 //    Price100 = 20,
                 //    CategoryId = 23
                 //}
-                );
+                ) ;
         }
     }
 }

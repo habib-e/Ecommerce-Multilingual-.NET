@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Bulky.Utility
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,6 +9,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/bootswatchTheme.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BulkyBookWeb.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css" />
 </head>
 <body>
     <header>
@@ -30,60 +33,40 @@
                             <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Privace</a>
                             @*change*@
                         </li>
-                        <li class="nav-item">
+                       @*  <li class="nav-item">
                             <a class="nav-link" asp-area="Customer" asp-controller="Image" asp-action="Index">Image</a>
-                            @* problem *@
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Content Management
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
-
-                                </li>
-                               
-                                <li><hr class="dropdown-divider"></li>
-                                @* <li><a class="dropdown-item" href="#">Something else here</a></li> *@
-                            </ul>
-                        </li>
-
-                        @* <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                       
                         </li> *@
-                        @* <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                        <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                        </li> *@
+
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Content Management
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+
+                                    </li>
+
+                                    <li><hr class="dropdown-divider"></li>
+                                    @* <li><a class="dropdown-item" href="#">Something else here</a></li> *@
+                                </ul>
+                            </li>
+                        }
+
+
+
+                        
                     </ul>
-                     <form asp-action="Index" class="d-flex">
-                    <input name="term" class="form-control me-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                    @* <form asp-action="CategoryController">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <input name="term" class="form-control" placeholder="Search by name" />
-
-                            </div>
-                            <div class="col-6-md-4">
-                                <button type="submit" class="btn btn-info">Search</button>
-
-                            </div>
-
-                        </div>
-                    </form> *@
+                    
+                    <partial name="_LoginPartial" />    
+                   
                 </div>
             </div>
         </nav>
@@ -94,46 +77,30 @@
         </main>
     </div>
 
-    @* <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            @if (Model.CurrentPage > 1)
-            {
-                <li class="page-item">
-                    <a class="page-link" href="/Category/Categories?term=@Model.Term&@(Model.CurrentPage-1)" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-            }
-            
-            @for (int i = 0; i < Model.TotalPages; i++)
-            {
-                if (i == Model.CurrentPage)
-                {
-                    <li class="page-item"><a class="page-link active" href="/Category/Categories?term=@Model.Term&@i">@i</a></li>
-                }
-                else
-                {
-                    <li class="page-item"><a class="page-link" href="/Category/Categories?term=@Model.Term&@Model.CurrentPage">@i</a></li>
-                }
-                
-            }
-          
-            <li class="page-item">
-                <a class="page-link" href="/Category/Categories?term=@Model.Term&@(Model.CurrentPage+1)" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav> *@
 
     <footer class="border-top footer text-muted">
         <div class="text-center">
             &copy; 2024 - Mind Benders E-commerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    @* testing *@
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css" />
+
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+
+
+    @* testing *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.datatables.net/2.0.2/js/dataTables.min.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
